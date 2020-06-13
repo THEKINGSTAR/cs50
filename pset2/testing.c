@@ -5,12 +5,22 @@
 #include <string.h>
 #include <math.h>
 
-string digit_check(input_text);
+string digit_check();
 
 int main(void)
 {
+
+/*
     string input_text  = get_string("","Please enter your text\n");
     digit_check(input_text);
+ */
+
+int mudol_number = (((122 + 65) / 97) + ((122 + 65) % 97));
+printf("%i",mudol_number);
+printf("%c",mudol_number);
+int divid_number =123/122;
+printf("%i", divid_number);
+
 }
 
 string digit_check(string input_text)
