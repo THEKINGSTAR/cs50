@@ -18,7 +18,7 @@ ci = (pi + k) % 26
 
 string digit_check(string input_text);
 int text_to_cypher(int key);
-string cypher(string text, int key);
+string cipher(string text, int key);
 
 int main(int argc, string argv[])
 {
@@ -37,13 +37,15 @@ int main(int argc, string argv[])
     //printf("main loaded\n");
 }
 
-string cypher(string text, int key)
+string cipher(string text, int key)
 {
+    printf("ciphertext:\n");
     int lenght = strlen(text);
     int to_convert[lenght];
 
     for (int i = 0; i < strlen(text); i++)
     {
+        //to_convert[i] = atoi(text[i]);
         to_convert[i] = ("%i", text[i]);
     }
 
@@ -53,7 +55,22 @@ string cypher(string text, int key)
         charac = to_convert[j];
         if (isalpha(charac))
         {
-            printf("%c,", charac + key);
+            if (isupper(charac))
+            {
+                if ((charac + key) > 90)
+                {
+                    int upper_convert = ((charac + key) % 26);
+                    printf("%c", upper_convert + 64);
+                }
+                else
+                {
+                    printf("%c", charac + key);
+                }
+            }
+            else
+            {
+                printf("%c", charac + key);
+            }
         }
         else
         {
@@ -61,6 +78,7 @@ string cypher(string text, int key)
         }
     }
     printf("\n");
+    return 0;
 }
 
 string digit_check(string input_text)
@@ -90,12 +108,14 @@ string digit_check(string input_text)
         //printf("Usage: ./caesar key ::digit_check::\n");
         printf("Usage: ./caesar key\n");
     }
+    return 0;
 }
 
 int text_to_cypher(key)
 {
-    string input_text = get_string("", "Please enter your text\n");
-    cypher(input_text, key);
+    string input_text = get_string("", "plaintext:\n");
+    cipher(input_text, key);
+    return 0;
 }
 
 

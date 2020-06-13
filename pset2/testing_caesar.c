@@ -41,7 +41,15 @@ string cypher(string text , int key)
         charac = to_convert[j];
         if (isalpha(charac))
         {
-            printf("%c,", charac + key);
+            if(isupper(charac))
+            {
+                int upper_convert = (((charac + key) % 26) + 65);
+                printf("%c", upper_convert);
+            }
+            else
+            {
+                printf("%c", charac + key);
+            }
         }
         else
         {
@@ -59,11 +67,11 @@ string digit_check(string input_text)
 
         if (isdigit(input_text[i]))
         {
-            printf("is digit \n");
+            //printf("is digit \n");
         }
         else
         {
-            printf("is alpha \n");
+            //printf("is alpha \n");
             coung_nun_digit++;
         }
     }
