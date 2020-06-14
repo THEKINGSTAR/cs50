@@ -53,7 +53,7 @@ int key_validate (string input_key)
             }
         }
         count_key_letters++;
-        printf("%i\n", count_key_letters);
+//printf("%i\n", count_key_letters);
         if(isdigit(input_key[i]))
         {
             check_digit_in_key ++ ;
