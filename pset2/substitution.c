@@ -100,85 +100,112 @@ int text_to_cypher(key)
 
 int assciconvert(string input_text,string key)
 {
-    //sort the key in array of 26 letter
-    int array_of_keys[26];
-    for (int i = 0; i <27; i++)
+    /*
+    string key = "nQXPOMAFTRHLZGECYJIUWSKDVB";
+    string input_text = "Hello";
+    */
+
+    string array_of_keys[26];
+    for (int i = 0; i < 26; i++)
     {
         //to_convert[i] = atoi(text[i]);
-        array_of_keys[i] = ( "%i",key[i] );
+        array_of_keys[i] = key[i];
         //converted every givin charc to number
     }
-    //for each letter inputed from the user in the array == what it is in the key upper case or lower case
-    //[a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z]
-    //create tow arrays of asscii one fore lower alpha && one fore upper alpha
-    int lower_case[26];
+
+    string asscii_lower_case[26];
     for (int l = 0; l < 26; l++)
     {
-        
-        lower_case[l] = 97 + l;
+        asscii_lower_case[l] = 97 + l;
+        //printf("%c,", asscii_lower_case[l]);
     }
-    int upper_case[26];
+        //printf("\n");
+    string asscii_upper_case[26];
     for (int u = 0; u < 26; u++)
     {
-        upper_case[u] = 65 + u;
+        asscii_upper_case[u] = 65 + u;
+        //printf("%c,", asscii_upper_case[u]);
     }
-    //convert the input text to array of int
+        //printf("\n");
+    /*
+        array_of_asscii_code(lower or upper);
+        
+        [#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#]
+        
+        array_of_keys;
+
+        [#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#]
+        
+        array_of_input;
+        
+        [#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#,#]
+
+    */
+
+    //convert every character in the asscii to its key
+
+/*
+string converted_asscii_upper_case[26];
+string converted_asscii_lower_case[26];
+*/
+    string converted_asscii_table[26];
+    for (int c = 0; c < 26; c++)
+    {
+        /*     if (isupper(array_of_keys[c]))
+    {
+        converted_asscii_upper_case[c] = array_of_keys[c];
+        printf("%i,", converted_asscii_upper_case[c]);
+    }
+    if (islower(array_of_keys[c]))
+    {
+        converted_asscii_lower_case[c] = array_of_keys[c];
+        printf("%i,", converted_asscii_lower_case[c]);
+    } */
+        converted_asscii_table[c] = array_of_keys[c];
+    }
+    //loop in the lenght of the string
     int lenght = strlen(input_text);
-    int array_of_input[lenght];
-    for(int l = 0 ; l < lenght ; l++)
+    for (int l = 0; l < lenght; l++)
     {
-        //to_convert[i] = atoi(text[i]);
-        array_of_input[l] = ("%i", input_text[l]);
-        //converted every givin charc to number
+        //chek for every charcter position of the string
+        int charcter_in_text = input_text[l];
+        if (isalpha(charcter_in_text))
+        {
+            for (int c = 0; c < 26; c++)
+            {
+
+                if (isupper(charcter_in_text))
+                {
+                    if (charcter_in_text == asscii_upper_case[c])
+                    {
+                        printf("%c", toupper(converted_asscii_table[c]));
+                    }
+                }
+                if (islower(charcter_in_text))
+                {
+                    if (charcter_in_text == asscii_lower_case[c])
+                    {
+                        printf("%c", tolower(converted_asscii_table[c]));
+                    }
+                }
+            }
+        }
+        else
+        {
+            printf("%c", charcter_in_text);
+        }
     }
-        /*
-            array_of_keys;
-            [#,#,#,#,#,#,#]
-            array_of_input;
-        */
-    for (int i = 0; i<lenght-1 ; i++)
-    //loop in hole text
-    {
-         for (int j = 0; j < 26; j++)
-         //loop in every alphabet charctar to see what it equal in asscii and convert it to key
-         {
-             if (isupper(array_of_input[j]))
-             {
-                 if ( array_of_input[j] == upper_case[j] )
-                 {
-                     if (isupper(array_of_keys[j]))
-                     {
-                         array_of_input[j] = array_of_keys[j];
-                         printf("%c", array_of_input[j]);
-                     }
-                     if (islower(array_of_keys[j]))
-                     {
-                         array_of_input[j] = array_of_keys[j];
-                         printf("%c", array_of_input[j-32]);
-                     }
-                 }
-             }
-             if (islower(array_of_input[j]))
-             {
-                 if (array_of_input[j] == lower_case[j])
-                 {
-                     if (islower(array_of_keys[j]))
-                     {
-                         array_of_input[j] = array_of_keys[j];
-                         printf("%c", array_of_input[j]);
-                     }
-                     if (isupper(array_of_keys[j]))
-                     {
-                         array_of_input[j] = array_of_keys[j];
-                         printf("%c", array_of_input[j+32]);
-                     }
-                 }
-             }
-         }
-    }
+    //chek where it belong to the asscii
+
+    //chsnge the character with the one in the key as the posation of the key is the same position of the carcter in the asscii code
 
     return 0;
 }
+
+
+
+/*########################################code from caesar#########################################*/
+
 /*----------------------- sipher the text but this time leter by letter  ---------------------*/
 //1- take every letter from inpute and compare it to what it equal to in asscii location
 //2- convert the letter to what it is location is in the key
