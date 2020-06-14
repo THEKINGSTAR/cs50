@@ -26,7 +26,7 @@ int main(int argc, string argv[])
     if (argc == 2)
     {
         //printf("argv enterd is %s \n", argv[1]);
-        digit_check(argv[1]);
+        return digit_check(argv[1]);
     }
     else
     {
@@ -158,12 +158,10 @@ string cipher(string text, int key)
 :) encrypts "barfoo" as "onesbb" using 65 as key
 :) encrypts "world, say hello!" as "iadxp, emk tqxxa!" using 12 as key
 :) handles lack of key
-:( handles non-numeric key
-    expected exit code 1, not 0
+:) handles non-numeric key
 :) handles too many arguments
 
 */
-
 
 /*################################################################################################################################################################*/
 /*################################################################################################################################################################*/
@@ -199,7 +197,7 @@ int main(int argc, string argv[])
         //printf("argv enterd is %s \n", argv[1]);
         //string input_text                     = "This is CS50!" ; //argv[1];
         //key will be :: 2 :: output shoud be   :: Vjku ku EU50!
-        digit_check(argv[1]);
+        return digit_check(argv[1]);
     }
     else
     {
