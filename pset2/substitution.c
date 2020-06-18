@@ -90,7 +90,8 @@ int key_validate (string input_key)
 
 int text_to_cypher(key)
 {
-    string input_text = get_string("", "plaintext:\n");
+    string input_text = get_string("", "plaintext:");
+    printf("ciphertext: ");
     assciconvert(input_text, key);
     return 0;
 }
@@ -151,7 +152,8 @@ string converted_asscii_lower_case[26];
     string converted_asscii_table[26];
     for (int c = 0; c < 26; c++)
     {
-        /*     if (isupper(array_of_keys[c]))
+    /*     
+    if (isupper(array_of_keys[c]))
     {
         converted_asscii_upper_case[c] = array_of_keys[c];
         printf("%i,", converted_asscii_upper_case[c]);
@@ -160,7 +162,8 @@ string converted_asscii_lower_case[26];
     {
         converted_asscii_lower_case[c] = array_of_keys[c];
         printf("%i,", converted_asscii_lower_case[c]);
-    } */
+    } 
+    */
         converted_asscii_table[c] = array_of_keys[c];
     }
     //loop in the lenght of the string
@@ -178,14 +181,16 @@ string converted_asscii_lower_case[26];
                 {
                     if (charcter_in_text == asscii_upper_case[c])
                     {
-                        printf("ciphertext: %c", toupper(converted_asscii_table[c]));
+                        printf("%c", toupper(converted_asscii_table[c]));
+                        //printf("ciphertext: %c", toupper(converted_asscii_table[c]));
                     }
                 }
                 if (islower(charcter_in_text))
                 {
                     if (charcter_in_text == asscii_lower_case[c])
                     {
-                        printf("ciphertext: %c", tolower(converted_asscii_table[c]));
+                        //printf("ciphertext: %c", tolower(converted_asscii_table[c]));
+                        printf("%c", tolower(converted_asscii_table[c]));
                     }
                 }
             }
@@ -265,6 +270,7 @@ For security, you’ll see asterisks (*) instead of the actual characters in you
 /*----------------------- sipher the text but this time leter by letter  ---------------------*/
 //becuse we everty letter in itis own is key
 /*
+
 string cipher(string text, int key)
 {
     printf("ciphertext:\n");
@@ -331,3 +337,8 @@ string to_convert(text)
     return to_convert,lenght;
 }
 */
+
+/*########################################code from caesar#########################################*/
+/*########################################code from caesar#########################################*/
+/*########################################code from caesar#########################################*/
+/*########################################code from caesar#########################################*/
