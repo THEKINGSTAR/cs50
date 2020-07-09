@@ -1,4 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "Disabled",
-    "glassit.alpha": 150
+    "glassit.alpha": 150,
+    "files.associations": {
+        "stdio.h": "c"
+    }
 }
