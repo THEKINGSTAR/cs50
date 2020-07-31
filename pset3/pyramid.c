@@ -5,7 +5,7 @@
 
 int main(void)
 {
-    int pyramid = 50 ;
+    int pyramid = 9 ;
     int counter = pyramid;
 //first draw spaces as the basewhight is
 
