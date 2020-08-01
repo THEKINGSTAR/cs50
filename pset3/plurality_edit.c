@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <cs50.c>
+#include <cs50.h>
 
 // Max number of candidates
 #define MAX 9
@@ -24,8 +24,12 @@ void print_winner(void);
 
 void sorting(void);
 void find_the_winnner(void);
-int check_the_existing_of_the_name(int index, string name);
+int check_the_existing_of_the_name(int index, string name)
+/*###########END OF FUNCTIONS DEFINITIONS #######################*/
 
+/*###########################///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////##################*/
+                            /*######################## starting of the program ############################################*/
+                            
 int main(int argc, string argv[])
 {
     // Check for invalid usage
@@ -56,16 +60,20 @@ int main(int argc, string argv[])
         string name = get_string("","Vote: ");
 
         // Check for invalid vote
-        vote(name);
-        /* if (!vote(name))
+                //vote(name);
+         if (!vote(name))
         {
             printf("Invalid vote.\n");
-        } */
+        } 
     }
 
     // Display winner of election
     print_winner();
 }
+
+
+
+/*////////////////////////////////////////////START OF MAIN PROGRAMS FUNCTIONS///////////////////////////////////////////////////////////*/
 
 // Update vote totals given a new vote
 string vote(string name)
@@ -81,16 +89,9 @@ string vote(string name)
     }
 }
 
-// Print the winner (or winners) of the election
-void print_winner(void)
-{
-    // TODO
-    //1- sorting based on total voices
-    sorting();
-    //2- find the one with the bigest voices if tai print the tow
-    find_the_winnner();
- }
 
+
+//sorting form gratest to lowest
 void sorting(void)
 {
     for (int l = 0; l < candidate_count; l++)
@@ -110,14 +111,17 @@ void sorting(void)
     }
 }
 
-void find_the_winnner(void)
+// Print the winner (or winners) of the election
+void print_winner(void)
 {
-    if (candidates[0].votes > candidates[1].votes)
-    {
-        printf("%s", candidates[0].name);
-    }
+    // TODO
+    //1- sorting based on total voices
+    sorting();
+    //2- find the one with the bigest voices if tai print the tow
+    find_the_winnner();
 }
 
+//suposly to find if the name is exitst encress the votes by one
 int check_the_existing_of_the_name(int index, string name)
 {
 
@@ -131,4 +135,14 @@ int check_the_existing_of_the_name(int index, string name)
     }
 
     return 0;
+}
+
+//supposley to find the biggest number if tow is equal return tow
+    void
+    find_the_winnner(void)
+{
+    if (candidates[0].votes > candidates[1].votes)
+    {
+        printf("%s", candidates[0].name);
+    }
 }
