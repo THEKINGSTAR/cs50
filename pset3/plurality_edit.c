@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <cs50.h>
+#include "cs50.h"
 
 // Max number of candidates
 #define MAX 9
@@ -24,12 +24,11 @@ void print_winner(void);
 
 void sorting(void);
 void find_the_winnner(void);
-int check_the_existing_of_the_name(int index, string name)
+int check_the_existing_of_the_name(int index, string name);
 /*###########END OF FUNCTIONS DEFINITIONS #######################*/
 
 /*###########################///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////##################*/
-                            /*######################## starting of the program ############################################*/
-                            
+/*######################## starting of the program ############################################*/
 int main(int argc, string argv[])
 {
     // Check for invalid usage
@@ -57,39 +56,35 @@ int main(int argc, string argv[])
     // Loop over all voters
     for (int i = 0; i < voter_count; i++)
     {
-        string name = get_string("","Vote: ");
+        string name = get_string("Vote: ");
 
         // Check for invalid vote
-                //vote(name);
-         if (!vote(name))
+        if (!vote(name))
         {
             printf("Invalid vote.\n");
-        } 
+        }
     }
 
     // Display winner of election
     print_winner();
 }
 
-
-
 /*////////////////////////////////////////////START OF MAIN PROGRAMS FUNCTIONS///////////////////////////////////////////////////////////*/
 
 // Update vote totals given a new vote
 string vote(string name)
 {
-    printf("Recived name , %s \n",name);
-    printf("number of candidate to check is : %i \n",candidate_count);
+    printf("Recived name , %s \n", name);
+    printf("number of candidate to check is : %i \n", candidate_count);
     // TODO
     for (int i = 0; i < candidate_count; i++)
     {
         string compareing_name = candidates[i].name;
         printf("Inside of the name chekingg loop , the name to check is %s \n", compareing_name);
-        check_the_existing_of_the_name( i,  name);
+        check_the_existing_of_the_name(i, name);
     }
+    return name;
 }
-
-
 
 //sorting form gratest to lowest
 void sorting(void)
@@ -128,9 +123,9 @@ int check_the_existing_of_the_name(int index, string name)
     if (candidates[index].name == name)
     {
         printf("Cheking the name of : %s ", candidates[index].name);
-        int adding_one_vote = candidates[index].votes ;
-        adding_one_vote ++ ;
-        candidates[index].votes = adding_one_vote ;
+        int adding_one_vote = candidates[index].votes;
+        adding_one_vote++;
+        candidates[index].votes = adding_one_vote;
         printf("Candidate : %s , Have %i  Votes", candidates[index].name, candidates[index].votes);
     }
 
@@ -138,8 +133,7 @@ int check_the_existing_of_the_name(int index, string name)
 }
 
 //supposley to find the biggest number if tow is equal return tow
-    void
-    find_the_winnner(void)
+void find_the_winnner(void)
 {
     if (candidates[0].votes > candidates[1].votes)
     {
