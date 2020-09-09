@@ -58,6 +58,9 @@ int main(int argc, string argv[])
         }
     }
 
+    //pringint the number of candidates 
+    //printf("number of candidates %i\n",candidate_count);
+    
     // Display winner of election
     print_winner();
 }
@@ -81,65 +84,125 @@ bool vote(string name)
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-    string winner1 = "";
-    string winner2 = "";
-
     // TODO
-    for (int l = 0; l < candidate_count; l++)
+    for (int l = 0; l <candidate_count; l++)
+    {
+        for (int i = 0; i <candidate_count; i++)
+        {
+            string  rsort_name = candidates[i + 1].name;
+            int     rsort_vote = candidates[i + 1].votes;
+            
+            string  lsort_name = candidates[i].name;
+            int     lsort_vote = candidates[i].votes;
+            
+            string temp_name;
+            int    temp_vote;
+
+            if (rsort_vote > lsort_vote)
+            {
+                temp_name = candidates[i].name;
+                temp_vote = candidates[i].votes;
+
+                candidates[i].name = candidates[i + 1].name;
+                candidates[i].votes = candidates[i + 1].votes;
+
+                candidates[i + 1].name  = temp_name;
+                candidates[i + 1].votes = temp_vote;
+            }
+        }
+    }
+            /*     
+            //checking the sort algorithm and the correct orders of the names:
+            
+            printf("end of souting , printing the sort and there votes \n");
+
+            for (int s = 0; s <candidate_count ; s++)
+            {
+                printf("the candiate %s ,have : %i votes \n", candidates[s].name, candidates[s].votes);
+            }
+            */
+
+    //----------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
+    //CREATING WINNER COUNTER AND ENCREMET IT ACCOURDING TO THE TOTAL VOTES
+    /* 
+    //counting the total winner an print them if any
+    int count_winner = 0;
+
+    if (candidates[0].votes > candidates[1].votes)
+    {
+        //printf("the winner is %s whit total of  %i votes \n", candidates[0].name, candidates[0].votes);
+        printf("%s \n", candidates[0].name);
+        count_winner = count_winner + 1;
+    }
+
+    if (count_winner == 0)
     {
         for (int i = 0; i < candidate_count; i++)
         {
-            int rsort = candidates[i + 1].votes;
-            int lsort = candidates[i].votes;
-            string temp;
-            if (rsort > lsort)
+
+            if (candidates[i].votes == candidates[i + 1].votes)
             {
-                temp = candidates[i].name;
-                candidates[i].name = candidates[i + 1].name;
-                candidates[i + 1].name = temp;
+                // printf("%s \n", candidates[i].name);
+
+                count_winner = count_winner + 1;
+                printf("%s \n", candidates[i].name);
+                // printf("count inside the more than one winner %i \n", count_winner);
             }
         }
     }
 
-printf("end of souting \n");
-    int count_winner = 0;
-    //count the total winner an print them
-    for (int i = 0; i < candidate_count; i++)
-    {
-        if (candidates[i].votes > candidates[i + 1].votes)
-        {
-            count_winner = count_winner + 1;
-            printf("count inside the one winner %i \n",count_winner);
-            //count_winner = 1;
-            //return;
-           
-        }
-        if (candidates[i].votes == candidates[i + 1].votes)
-        {
-            count_winner = count_winner + 1;
-            printf("count inside the more than one winner %i \n", count_winner);
-        }
-    }
-printf("count of wiiners counting form 0 is :  %i \n",count_winner);
-    for (int i = 0; i <count_winner; i++)
+    printf("count of wiiners counting form 0 is :  %i \n",count_winner);
+
+    for (int i = 0; i <=count_winner; i++)
     {
         printf("%s \n", candidates[i].name);
     }
 
-    /*
+ */
+    //----------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
+    //BUT SINCE THE ARRAY IS SORTING THERE IS NO NEED FOR THIS SO DO IT WITH MORE SIMBLE WAY
+    //counting the total winner an print them if any
     if (candidates[0].votes > candidates[1].votes)
     {
-        winner1 = (candidates[0].name);
-        //printf(" %i \n", candidates[0].votes);
-        printf("%s \n", winner1);
+        printf("%s \n", candidates[0].name);
     }
-    if (candidates[0].votes == candidates[1].votes)
+    for (int i = 0; i < candidate_count; i++)
     {
-        winner1 = (candidates[0].name);
-        winner2 = (candidates[1].name);
-        printf("%s \n", winner1);
-        printf("%s \n", winner2);
-    } */
+        if (candidates[i].votes == candidates[i + 1].votes)
+        {
+            printf("%s \n", candidates[i].name);
+        }
+        else if (candidates[i].votes == candidates[i - 1].votes)
+        {
+            printf("%s \n", candidates[i].name);
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------
+    //--------------------------------TESTING THE OUTPUT NOTHING MORE ------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
+    /*
+    string winner = "";
+    for (int i = 0; i <candidate_count; i++)
+    {
+        int next_candiata=i+1;
+        if (candidates[i].votes > candidates[next_candiata].votes)
+        {
+            winner = (candidates[i].name);
+            //printf(" %i \n", candidates[0].votes);
+            printf("%s \n", winner);
+            return ;
+        }
+        if (candidates[i].votes == candidates[i-1].votes)
+        {
+            winner = (candidates[i].name);
+
+            printf("%s \n", winner);
+        }
+    }
+    */
 
     return;
 }
