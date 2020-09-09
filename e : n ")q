@@ -1,0 +1,139 @@
+[33mcommit 8baac31c4f14d8e81fddb50a97e03d1890cfd239[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 1f98656 4617701
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Tue Sep 8 04:14:48 2020 +0200
+
+    Merge branch 'master' of https://github.com/THEKINGSTAR/cs50
+    chanigint the compile location in ubuntu
+
+[33mcommit 1f98656088b0a11e78204e1020e03f96fe986b8d[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Tue Sep 8 04:12:16 2020 +0200
+
+    changing the compile location
+
+[33mcommit 46177012dddb643679feeabe6ecdf6e99278f178[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sun Sep 6 16:21:29 2020 +0200
+
+    Create README.md
+
+[33mcommit 22672c9d7fc5c3f1d0e9b8cc23093c6dcdfd82c2[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sun Sep 6 16:19:31 2020 +0200
+
+    before the final pset3
+
+[33mcommit 474aa909b4741c5b662c58460dd62580e0f1b9ea[m
+Author: root <root@STORM-PC.localdomain>
+Date:   Sat Aug 1 18:17:17 2020 +0200
+
+    changint the code again
+
+[33mcommit d167ec1f580f65bdb4360745ddcd4431e766ad57[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Fri Jul 31 03:10:52 2020 +0200
+
+    starting to edit hte struct data type
+
+[33mcommit 9feff026841a51e783b56ae71150f892ac143bd7[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Thu Jul 9 20:29:17 2020 +0200
+
+    before changing  the functions
+
+[33mcommit 2c0e5aa1a9da81142cb028091b976891d2c29458[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sun Jun 28 14:24:30 2020 +0200
+
+    starting work on pset3 soultion
+
+[33mcommit 2d115115c1ec5d0ab303bf73ca2330d1f68cd754[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Wed Jun 24 08:23:26 2020 +0200
+
+    phone book
+
+[33mcommit 2a64270b3267aefd3d8e020ae8b7c52a89993362[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Thu Jun 18 14:28:07 2020 +0200
+
+    finishing the substitution output messages
+
+[33mcommit d9518a44dcf82840feb8f75f3bd29d0862b303c3[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Mon Jun 15 04:00:53 2020 +0200
+
+    add readability test cases make pset3 folder
+
+[33mcommit 9e7d7e51bf946d85abca020f847368a2dd2bda38[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sun Jun 14 05:09:11 2020 +0200
+
+    ADD TEST RESULT FOR readability
+
+[33mcommit d53a92483c1463f8d23be7f57e00c805dddbabcc[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sun Jun 14 05:01:25 2020 +0200
+
+    change the caser as submited to cs50
+
+[33mcommit f994563ddacd8a2da6161017ebc2a8a8578185c7[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sun Jun 14 04:41:47 2020 +0200
+
+    SUBMITED substitution TO CS50
+
+[33mcommit 62d7a9beb1641df7b3a203ce9fb589ca5eb949f3[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sun Jun 14 03:11:32 2020 +0200
+
+    finished substitiution
+
+[33mcommit 4b1abd780623b04df60a6811d92d614a9f9fd9cb[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sun Jun 14 03:01:06 2020 +0200
+
+    before the final cersion working
+
+[33mcommit e7806d833881cee8acdafd6c93f5166b63d0998d[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sat Jun 13 22:34:37 2020 +0200
+
+    finished substitution first stage
+
+[33mcommit 7b49adf2e76be4ef9a9814f4373241a6b63c6691[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sat Jun 13 04:54:55 2020 +0200
+
+    FINISHED CAESAR
+
+[33mcommit e435c633f2d549332d8ef21f78e1baa542fee551[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sat Jun 13 03:22:23 2020 +0200
+
+    finished the caser take input and text
+
+[33mcommit bea777b1bfb604a9f9df6df03a023d83fc994148[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Thu Jun 11 00:56:21 2020 +0200
+
+    finisting the credi card in test.c
+
+[33mcommit db4293f6bcc85e3fe617fb5a1202cace99ba75a6[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Wed Jun 10 23:39:21 2020 +0200
+
+    before changing the if conditon test case
+
+[33mcommit d40f8a32725ea08c8b05e1046273dde9e26d2295[m
+Author: THEKINGSTAR <THEKINGSTAR5002@GMAIL.COM>
+Date:   Mon Jun 8 06:07:43 2020 +0200
+
+    finishint the checksum built in
+
+[33mcommit fe9f95bc714a632cba8e7262373a98d5214604b5[m
+Author: KHALED MOHAMED <THEKINGSTAR5002@GMAIL.COM>
+Date:   Sun May 31 16:56:21 2020 +0200
+
+    start the c tets on windows
