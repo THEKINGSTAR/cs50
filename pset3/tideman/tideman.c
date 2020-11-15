@@ -2,6 +2,33 @@
 #include <stdio.h>
 #include <string.h>
 
+//#################################################################################################################################################################### 
+/*
+    First, notice the two-dimensional array preferences . 
+    The integer preferences[i][j] will represent the number of voters who prefer candidate i over candidate j .
+    The åle also deånes another two-dimensional array, called locked , which will represent the candidate graph. locked is a boolean array, so locked[i][j] being true
+    epresents the existence of an edge pointing from candidate i to candidate j ; false means there is no edge. (If curious, this representation of a graph is known as an
+    adjacency matrix”).
+
+    Next up is a struct called pair , used to represent a pair of candidates: each pair includes the winner ’s candidate index and the loser ’s candidate index.
+    
+    The candidates themselves are stored in the array candidates , which is an array of string s representing the names of each of the candidates. There’s also an array of pairs ,
+    which will represent all of the pairs of candidates (for which one is preferred over the other) in the election.
+    
+    The program also has two global variables: pair_count and candidate_count , representing the number of pairs and number of candidates in the arrays pairs and
+    candidates , respectively.
+
+    Now onto main . Notice that after determining the number of candidates, the program loops through the locked graph and initially sets all of the values to false , which mean
+    our initial graph will have no edges in it.
+    
+    Next, the program loops over all of the voters and collects their preferences in an array called ranks (via a call to vote ), where ranks[i] is the index of the candidate who is
+    he i th preference for the voter. These ranks are passed into the record_preference function, whose job it is to take those ranks and update the global preferences variable.
+    Once all of the votes are in, the pairs of candidates are added to the pairs array via a called to add_pairs , sorted via a call to sort_pairs ,
+     and locked into the graph via a call o lock_pairs . Finally, print_winner is called to print out the name of the election’s winner!
+    Further down in the åle, you’ll see that the functions vote , record_preference , add_pairs , sort_pairs , lock_pairs , and print_winner are left blank. That’s up to you!
+*/
+//####################################################################################################################################################################
+
 // Max number of candidates
 #define MAX 9
 
@@ -100,23 +127,45 @@ int main(int argc, string argv[])
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
 {
+
+    /*
+         Complete the vote function.
+        The function takes arguments rank , name , and ranks . 
+        If name is a match for the name of a valid candidate, then you should update the ranks array to indicate that
+        the voter has the candidate as their rank preference (where 0 is the årst preference, 1 is the second preference, etc.)
+        
+         Recall that ranks[i] here represents the user’s i th preference.
+         The function should return true if the rank was successfully recorded,
+         and false otherwise (if, for instance, name is not the name of one of the candidates).
+         You may assume that no two candidates will have the same name
+    */
+
     // TODO
-/*
+
     for (int i = 0; i < candidate_count; i++)
     {
-        if (strcmp(candidates[i].name, name) == 0)
+        if (strcmp(candidates[i], name) == 0)
         {
-            preferences[voter][rank] = i;
+            ranks[i]=candidates[i];
             return true;
         }
     } 
-*/
+
     return false;
 }
 
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
+    /*
+         Complete the record_preferences function.
+        The function is called once for each voter, and takes as argument the ranks array, 
+        (recall that ranks[i] is the voter’s i th preference, where ranks[0] is the årst preference).
+        
+        The function should update the global preferences array to add the current voter’s preferences.
+        Recall that preferences[i][j] should represent the number of voters who prefer candidate i over candidate j .
+         You may assume that every voter will rank each of the candidates.
+    */
     // TODO
     return;
 }
