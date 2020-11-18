@@ -162,8 +162,8 @@ void print_winner(void)
      */
     //----------------------------------------------------------------------------------------------------------------------
     //----------------------------------------------------------------------------------------------------------------------
-    //BUT SINCE THE ARRAY IS SORTING THERE IS NO NEED FOR THIS SO DO IT WITH MORE SIMBLE WAY
-    //counting the total winner an print them if any
+    //BUT SINCE THE ARRAY IS SORTING THERE IS NO NEED FOR THIS SO DO IT WITH MORE SIMPLE WAY
+    //counting the total winner and print them if any
     if (candidates[0].votes > candidates[1].votes)
     {
         printf("%s\n", candidates[0].name);
@@ -211,6 +211,9 @@ void print_winner(void)
         }
     }
     */
+    //----------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
 
     return;
 }
