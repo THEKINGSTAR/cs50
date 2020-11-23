@@ -41,7 +41,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             int green = image[i][j].rgbtGreen;
             int blue = image[i][j].rgbtBlue;
 
-            float avarage = round((red + green + blue) / 3);
+            float avarage = round((red + green + blue) / 3.0);
             int round_avarage = round(avarage);
 
             //printf("%i",avarage);
@@ -144,5 +144,100 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    RGBTRIPLE original_image_pixel[height][width] ;
+    for (int i = 0; i <height; i++)
+    {
+        for (int  j = 0; j < width; j++)
+        {
+            original_image_pixel[i][j] = image[i][j] ;
+        }
+        
+    }
+
+    /*
+        # .  # .  # .  #
+        # .  # .  # .  #
+        # .  # .  # .  #
+        # .  # .  # .  #
+        # .  # .  # .  #
+    */
+
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            //check if the pixl is sourounded with 9 pixel or not , if trun
+            //calculate the avarage rede , avarage green , avarage blue
+            //if not take what surounded and
+            int red   = original_image_pixel[i][j].rgbtRed;
+            int green = original_image_pixel[i][j].rgbtGreen;
+            int blue  = original_image_pixel[i][j].rgbtBlue;
+            
+            //the avarage of the current pixel
+            float avarage = round((red + green + blue) / 3.0);
+            int round_avarage = round(avarage);
+
+
+            //courners calclulation
+            if ((i==0|| i==height-1) && (j==0||j==width-1))
+            {
+                //calaculate the avarage of suorded three pixel plus the pixel (avarage of the 4)
+                float avarage_red = round((original_image_pixel[i][j].rgbtRed + original_image_pixel[i][j+1].rgbtRed + original_image_pixel[i+1][j].rgbtRed + original_image_pixel[i+1][j+1].rgbtRed) / 3.0);
+                int round_avarage_red = round(avarage_red);
+
+                float avarage_green = round((original_image_pixel[i][j].rgbtGreen + original_image_pixel[i][j + 1].rgbtGreen + original_image_pixel[i + 1][j].rgbtGreen + original_image_pixel[i + 1][j + 1].rgbtGreen) / 3.0);
+                int round_avarage_green = round(avarage_green);
+
+                float avarage_blue = round((original_image_pixel[i][j].rgbtBlue + original_image_pixel[i][j + 1].rgbtBlue + original_image_pixel[i + 1][j].rgbtBlue + original_image_pixel[i + 1][j + 1].rgbtBlue) / 3.0);
+                int round_avarage_blue = round(avarage_blue);
+
+                image[i][j].rgbtRed = round_avarage_red;
+                image[i][j].rgbtGreen = round_avarage_green;
+                image[i][j].rgbtBlue = round_avarage_blue;
+            }
+
+            //first or last row calaculation
+            else if (((i == 0 || i == height - 1) && (j > 0 || j == width - 2)) || (i > 0 && (j == 0 || j == width - 1)))
+            {
+                //calaculate the avarage of suorded three pixel plus the pixel (avarage of the 6)
+                //for example i =0 , j = 1
+                float avarage_red = round((original_image_pixel[i][j].rgbtRed + original_image_pixel[i][j - 1].rgbtRed + original_image_pixel[i][j + 1].rgbtRed + original_image_pixel[i + 1][j - 1].rgbtRed + original_image_pixel[i + 1][j].rgbtRed + original_image_pixel[i + 1][j + 1].rgbtRed) / 3.0);
+                int round_avarage_red = round(avarage_red);
+
+                float avarage_green = round((original_image_pixel[i][j].rgbtGreen + original_image_pixel[i][j - 1].rgbtGreen + original_image_pixel[i][j + 1].rgbtGreen + original_image_pixel[i + 1][j - 1].rgbtGreen + original_image_pixel[i + 1][j].rgbtGreen + original_image_pixel[i + 1][j + 1].rgbtGreen) / 3.0);
+                int round_avarage_green = round(avarage_green);
+
+                float avarage_blue = round((original_image_pixel[i][j].rgbtBlue + original_image_pixel[i][j - 1].rgbtBlue + original_image_pixel[i][j + 1].rgbtBlue + original_image_pixel[i + 1][j - 1].rgbtBlue + original_image_pixel[i + 1][j].rgbtBlue + original_image_pixel[i + 1][j + 1].rgbtBlue) / 3.0);
+                int round_avarage_blue = round(avarage_blue);
+
+                image[i][j].rgbtRed = round_avarage_red;
+                image[i][j].rgbtGreen = round_avarage_green;
+                image[i][j].rgbtBlue = round_avarage_blue;
+            }
+        }
+        
+    }
+    
+    
     return;
 }
+
+//helper function to claculate the surunded fo pixel 
+//deprecated :)
+/*
+int pixel_count(int height, int width)
+{
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            
+
+
+
+        }
+        
+    }
+    
+}
+*/
