@@ -144,14 +144,13 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE original_image_pixel[height][width] ;
-    for (int i = 0; i <height; i++)
+    RGBTRIPLE original[height][width];
+    for (int i = 0; i < height; i++)
     {
-        for (int  j = 0; j < width; j++)
+        for (int j = 0; j < width; j++)
         {
-            original_image_pixel[i][j] = image[i][j] ;
+            original[i][j] = image[i][j];
         }
-        
     }
 
     /*
@@ -166,29 +165,46 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            //check if the pixl is sourounded with 9 pixel or not , if trun
-            //calculate the avarage rede , avarage green , avarage blue
-            //if not take what surounded and
-            int red   = original_image_pixel[i][j].rgbtRed;
-            int green = original_image_pixel[i][j].rgbtGreen;
-            int blue  = original_image_pixel[i][j].rgbtBlue;
-            
-            //the avarage of the current pixel
-            float avarage = round((red + green + blue) / 3.0);
-            int round_avarage = round(avarage);
 
-
-            //courners calclulation
-            if ((i==0|| i==height-1) && (j==0||j==width-1))
+            //filters corner pixel
+            if ((i == 0 || i == height - 1) && (j == 0 || j == width - 1))
             {
-                //calaculate the avarage of suorded three pixel plus the pixel (avarage of the 4)
-                float avarage_red = round((original_image_pixel[i][j].rgbtRed + original_image_pixel[i][j+1].rgbtRed + original_image_pixel[i+1][j].rgbtRed + original_image_pixel[i+1][j+1].rgbtRed) / 3.0);
+
+                int i_next_to = 0;
+                int j_next_to = 0;
+                //top left pixel
+                if (i == 0 && j == 0)
+                {
+                    i_next_to = 1;
+                    j_next_to = 1;
+                }
+                //top far right pixel
+                else if (i == 0 && j == width - 1)
+                {
+                    i_next_to = 1;
+                    j_next_to = -1;
+                }
+                //buttom left pixel
+                else if (i == height - 1 && j == 0)
+                {
+                    i_next_to = -1;
+                    j_next_to = 1;
+                }
+                //buttom far right pixel
+                else if (i == height - 1 && j == width - 1)
+                {
+                    i_next_to = -1;
+                    j_next_to = -1;
+                }
+
+                //calaculate the avarage of suorded other (3) three pixel + the corner pixel (avarage of the 4)
+                float avarage_red = round((original[i][j].rgbtRed + original[i][j + j_next_to].rgbtRed + original[i + i_next_to][j].rgbtRed + original[i + i_next_to][j + j_next_to].rgbtRed) / 4.0);
                 int round_avarage_red = round(avarage_red);
 
-                float avarage_green = round((original_image_pixel[i][j].rgbtGreen + original_image_pixel[i][j + 1].rgbtGreen + original_image_pixel[i + 1][j].rgbtGreen + original_image_pixel[i + 1][j + 1].rgbtGreen) / 3.0);
+                float avarage_green = round((original[i][j].rgbtGreen + original[i][j + j_next_to].rgbtGreen + original[i + i_next_to][j].rgbtGreen + original[i + i_next_to][j + j_next_to].rgbtGreen) / 4.0);
                 int round_avarage_green = round(avarage_green);
 
-                float avarage_blue = round((original_image_pixel[i][j].rgbtBlue + original_image_pixel[i][j + 1].rgbtBlue + original_image_pixel[i + 1][j].rgbtBlue + original_image_pixel[i + 1][j + 1].rgbtBlue) / 3.0);
+                float avarage_blue = round((original[i][j].rgbtBlue + original[i][j + j_next_to].rgbtBlue + original[i + i_next_to][j].rgbtBlue + original[i + i_next_to][j + j_next_to].rgbtBlue) / 4.0);
                 int round_avarage_blue = round(avarage_blue);
 
                 image[i][j].rgbtRed = round_avarage_red;
@@ -196,33 +212,66 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 image[i][j].rgbtBlue = round_avarage_blue;
             }
 
+            // filters edge pixel
             //first or last row calaculation
             else if (((i == 0 || i == height - 1) && (j > 0 || j == width - 2)) || (i > 0 && (j == 0 || j == width - 1)))
             {
                 //calaculate the avarage of suorded three pixel plus the pixel (avarage of the 6)
                 //for example i =0 , j = 1
-                float avarage_red = round((original_image_pixel[i][j].rgbtRed + original_image_pixel[i][j - 1].rgbtRed + original_image_pixel[i][j + 1].rgbtRed + original_image_pixel[i + 1][j - 1].rgbtRed + original_image_pixel[i + 1][j].rgbtRed + original_image_pixel[i + 1][j + 1].rgbtRed) / 3.0);
+                float avarage_red = round((original[i][j].rgbtRed + original[i][j - 1].rgbtRed + original[i][j + 1].rgbtRed + original[i + 1][j - 1].rgbtRed + original[i + 1][j].rgbtRed + original[i + 1][j + 1].rgbtRed) / 6.0);
                 int round_avarage_red = round(avarage_red);
 
-                float avarage_green = round((original_image_pixel[i][j].rgbtGreen + original_image_pixel[i][j - 1].rgbtGreen + original_image_pixel[i][j + 1].rgbtGreen + original_image_pixel[i + 1][j - 1].rgbtGreen + original_image_pixel[i + 1][j].rgbtGreen + original_image_pixel[i + 1][j + 1].rgbtGreen) / 3.0);
+                float avarage_green = round((original[i][j].rgbtGreen + original[i][j - 1].rgbtGreen + original[i][j + 1].rgbtGreen + original[i + 1][j - 1].rgbtGreen + original[i + 1][j].rgbtGreen + original[i + 1][j + 1].rgbtGreen) / 6.0);
                 int round_avarage_green = round(avarage_green);
 
-                float avarage_blue = round((original_image_pixel[i][j].rgbtBlue + original_image_pixel[i][j - 1].rgbtBlue + original_image_pixel[i][j + 1].rgbtBlue + original_image_pixel[i + 1][j - 1].rgbtBlue + original_image_pixel[i + 1][j].rgbtBlue + original_image_pixel[i + 1][j + 1].rgbtBlue) / 3.0);
+                float avarage_blue = round((original[i][j].rgbtBlue + original[i][j - 1].rgbtBlue + original[i][j + 1].rgbtBlue + original[i + 1][j - 1].rgbtBlue + original[i + 1][j].rgbtBlue + original[i + 1][j + 1].rgbtBlue) / 6.0);
                 int round_avarage_blue = round(avarage_blue);
 
                 image[i][j].rgbtRed = round_avarage_red;
                 image[i][j].rgbtGreen = round_avarage_green;
                 image[i][j].rgbtBlue = round_avarage_blue;
             }
+
+            // filters middle pixel
+            //check if the pixl is sourounded with 9 pixel or not
+            // get the original pixel vlaue red blue green and add them to new value befule calcualte the avarage
+            else if ((i > 0 && i < height - 2) && (j > 0))
+            {
+                int red = 0;
+                int green = 0;
+                int blue = 0;
+                int pixel_ith = i - 1;
+                int pixel_jth = j - 1;
+                for (int bi = 0; bi < 3; bi++, pixel_ith++)
+                {
+                    for (int bj = 0; bj < 3; bj++, pixel_jth++)
+                    {
+
+                        red = red + original[pixel_ith][pixel_jth].rgbtRed;
+                        green = green + original[pixel_ith][pixel_jth].rgbtGreen;
+                        blue = blue + original[pixel_ith][pixel_jth].rgbtBlue;
+                    }
+                    float avarage_red = round(red / 9.0);
+                    int round_avarage_red = round(avarage_red);
+
+                    float avarage_green = round(red / 9.0);
+                    int round_avarage_green = round(avarage_red);
+
+                    float avarage_blue = round(red / 9.0);
+                    int round_avarage_blue = round(avarage_red);
+
+                    image[i][j].rgbtRed = round_avarage_red;
+                    image[i][j].rgbtGreen = round_avarage_green;
+                    image[i][j].rgbtBlue = round_avarage_blue;
+                }
+            }
         }
-        
     }
-    
-    
+
     return;
 }
 
-//helper function to claculate the surunded fo pixel 
+//helper function to claculate the surunded fo pixel
 //deprecated :)
 /*
 int pixel_count(int height, int width)
@@ -231,13 +280,53 @@ int pixel_count(int height, int width)
     {
         for (int j = 0; j < width; j++)
         {
-            
+
 
 
 
         }
-        
+
     }
-    
+
 }
 */
+
+//###############################################################################################################################################################
+/*
+~/pset4/filter/ $ check50 cs50/problems/2020/x/filter/less
+Connecting.....
+Authenticating....
+Verifying......
+Preparing.....
+Uploading............
+Waiting for results.................................................................
+Results for cs50/problems/2020/x/filter/less generated by check50 v3.1.2
+:) helpers.c exists
+:) filter compiles
+:) grayscale correctly filters single pixel with whole number average
+:) grayscale correctly filters single pixel without whole number average
+:) grayscale leaves alone pixels that are already gray
+:) grayscale correctly filters simple 3x3 image
+:) grayscale correctly filters more complex 3x3 image
+:) grayscale correctly filters 4x4 image
+:) sepia correctly filters single pixel
+:) sepia correctly filters simple 3x3 image
+:) sepia correctly filters more complex 3x3 image
+:) sepia correctly filters 4x4 image
+:) reflect correctly filters 1x2 image
+:) reflect correctly filters 1x3 image
+:) reflect correctly filters image that is its own mirror image
+:) reflect correctly filters 3x3 image
+:) reflect correctly filters 4x4 image
+:( blur correctly filters middle pixel
+    expected "127 140 149\n", not "120 140 150\n"
+:) blur correctly filters pixel on edge
+:) blur correctly filters pixel in corner
+:( blur correctly filters 3x3 image
+    expected "70 85 95\n80 9...", not "70 85 95\n80 9..."
+:( blur correctly filters 4x4 image
+    expected "70 85 95\n80 9...", not "70 85 95\n80 9..."
+To see the results in your browser go to https://submit.cs50.io/check50/c31a16956739921fd72a1dead19055d11c5ad7b6
+
+*/
+//###############################################################################################################################################################
