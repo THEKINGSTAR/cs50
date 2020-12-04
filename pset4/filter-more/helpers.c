@@ -318,13 +318,26 @@ gy_green = round(0*(original[i][j].rgbtGreen) +0*(original[i][j + j_next_to].rgb
 gy_blue  = round(0*(original[i][j].rgbtBlue)  +0*(original[i][j + j_next_to].rgbtBlue)  +2*(original[i + i_next_to][j].rgbtBlue)  +1*(original[i + i_next_to][j + j_next_to].rgbtBlue));
                 }
                 //top far right pixel
+                /*
+                -------GX
+                    # -1  #  0  #  1  #
+                    # -2  #  0  #  2  #
+                    # -1  #  0  #  1  #
+                */
+                //----------------------------
+                /*
+                -------Gy
+                    # -1  # -2  # -1  #
+                    #  0  #  0  #  0  #
+                    #  1  #  2  #  1  #
+                */
                 else if (i == 0 && j == width - 1)
                 {
                     i_next_to = 1;
                     j_next_to = -1;
-gx_red   = round(2*(original[i][j].rgbtRed)   +-2*(original[i][j + j_next_to].rgbtRed)   +0*(original[i + i_next_to][j].rgbtRed)   +-1*(original[i + i_next_to][j + j_next_to].rgbtRed));
-gx_green = round(2*(original[i][j].rgbtGreen) +-2*(original[i][j + j_next_to].rgbtGreen) +0*(original[i + i_next_to][j].rgbtGreen) +-1*(original[i + i_next_to][j + j_next_to].rgbtGreen));                                      
-gx_blue  = round(2*(original[i][j].rgbtBlue)  +-2*(original[i][j + j_next_to].rgbtBlue)  +0*(original[i + i_next_to][j].rgbtBlue)  +-1*(original[i + i_next_to][j + j_next_to].rgbtBlue)); 
+gx_red   = round(0*(original[i][j].rgbtRed)   +-2*(original[i][j + j_next_to].rgbtRed)   +0*(original[i + i_next_to][j].rgbtRed)   +-1*(original[i + i_next_to][j + j_next_to].rgbtRed));
+gx_green = round(0*(original[i][j].rgbtGreen) +-2*(original[i][j + j_next_to].rgbtGreen) +0*(original[i + i_next_to][j].rgbtGreen) +-1*(original[i + i_next_to][j + j_next_to].rgbtGreen));                                      
+gx_blue  = round(0*(original[i][j].rgbtBlue)  +-2*(original[i][j + j_next_to].rgbtBlue)  +0*(original[i + i_next_to][j].rgbtBlue)  +-1*(original[i + i_next_to][j + j_next_to].rgbtBlue)); 
 
 gy_red   = round(0*(original[i][j].rgbtRed)   +0*(original[i][j + j_next_to].rgbtRed)   +2*(original[i + i_next_to][j].rgbtRed)   +1*(original[i + i_next_to][j + j_next_to].rgbtRed));
 gy_green = round(0*(original[i][j].rgbtGreen) +0*(original[i][j + j_next_to].rgbtGreen) +2*(original[i + i_next_to][j].rgbtGreen) +1*(original[i + i_next_to][j + j_next_to].rgbtGreen));                                      
@@ -466,23 +479,23 @@ gy_blue  = round(0*(original[i][j].rgbtBlue)  +0*(original[i][j + j_next_to].rgb
                     //edge on left
                     if (j == 0)
                     {
-                         gx_red = round((original[i - 1][j].rgbtRed + original[i - 1][j + 1].rgbtRed + original[i][j].rgbtRed +
-                                              original[i][j + 1].rgbtRed + original[i + 1][j].rgbtRed + original[i + 1][j + 1].rgbtRed) );
+                         gx_red = round((0*original[i - 1][j].rgbtRed + 1*original[i - 1][j + 1].rgbtRed + 0*original[i][j].rgbtRed +
+                                            2*  original[i][j + 1].rgbtRed + -0*original[i + 1][j].rgbtRed + 1*original[i + 1][j + 1].rgbtRed) );
 
-                         gx_green = round((original[i - 1][j].rgbtGreen + original[i - 1][j + 1].rgbtGreen + original[i][j].rgbtGreen +
-                                                original[i][j + 1].rgbtGreen + original[i + 1][j].rgbtGreen + original[i + 1][j + 1].rgbtGreen) );
+                         gx_green = round((0*original[i - 1][j].rgbtGreen + 1*original[i - 1][j + 1].rgbtGreen + 0*original[i][j].rgbtGreen +
+                                             2*   original[i][j + 1].rgbtGreen + -0*original[i + 1][j].rgbtGreen + 1*original[i + 1][j + 1].rgbtGreen) );
 
-                         gx_blue = round((original[i - 1][j].rgbtBlue + original[i - 1][j + 1].rgbtBlue + original[i][j].rgbtBlue +
-                                               original[i][j + 1].rgbtBlue + original[i + 1][j].rgbtBlue + original[i + 1][j + 1].rgbtBlue));
+                         gx_blue = round((0*original[i - 1][j].rgbtBlue +1* original[i - 1][j + 1].rgbtBlue + 0*original[i][j].rgbtBlue +
+                                             2*  original[i][j + 1].rgbtBlue + -0*original[i + 1][j].rgbtBlue +1* original[i + 1][j + 1].rgbtBlue));
                          //------------------------------------------------------------------------------------------------------------------------------
-                         gy_red = round((original[i - 1][j].rgbtRed + original[i - 1][j + 1].rgbtRed + original[i][j].rgbtRed +
-                                         original[i][j + 1].rgbtRed + original[i + 1][j].rgbtRed + original[i + 1][j + 1].rgbtRed));
+                         gy_red = round((-2*original[i - 1][j].rgbtRed + -1*original[i - 1][j + 1].rgbtRed + 0*original[i][j].rgbtRed +
+                                        0* original[i][j + 1].rgbtRed + 2*original[i + 1][j].rgbtRed + 1*original[i + 1][j + 1].rgbtRed));
 
-                         gy_green = round((original[i - 1][j].rgbtGreen + original[i - 1][j + 1].rgbtGreen + original[i][j].rgbtGreen +
-                                           original[i][j + 1].rgbtGreen + original[i + 1][j].rgbtGreen + original[i + 1][j + 1].rgbtGreen));
+                         gy_green = round((-2*original[i - 1][j].rgbtGreen + -1*original[i - 1][j + 1].rgbtGreen +0* original[i][j].rgbtGreen +
+                                          0* original[i][j + 1].rgbtGreen + 2*original[i + 1][j].rgbtGreen + 1*original[i + 1][j + 1].rgbtGreen));
 
-                         gy_blue = round((original[i - 1][j].rgbtBlue + original[i - 1][j + 1].rgbtBlue + original[i][j].rgbtBlue +
-                                          original[i][j + 1].rgbtBlue + original[i + 1][j].rgbtBlue + original[i + 1][j + 1].rgbtBlue));
+                         gy_blue = round((-2*original[i - 1][j].rgbtBlue + -1*original[i - 1][j + 1].rgbtBlue + 0*original[i][j].rgbtBlue +
+                                         0* original[i][j + 1].rgbtBlue + 2*original[i + 1][j].rgbtBlue + 1*original[i + 1][j + 1].rgbtBlue));
                     }
                     /*
                 -------GX
@@ -616,6 +629,11 @@ gy_blue  = round(0*(original[i][j].rgbtBlue)  +0*(original[i][j + j_next_to].rgb
                             {-1, 0, 1},
                             {-2, 0, 2},
                             {-1, 0, 1}};
+                    int gy[3][3] =
+                        {
+                            {-1, -2, -1},
+                            {0, 0, 0},
+                            {1, 2, 1}};
 
                     for (int bi = 0; bi < 3; bi++)
                     {
@@ -623,34 +641,19 @@ gy_blue  = round(0*(original[i][j].rgbtBlue)  +0*(original[i][j + j_next_to].rgb
                         for (int bj = 0; bj < 3; bj++)
                         {
                             //calculating the gx >>>>>>>
-                            gx_red = gx_red + gx[bi][bj] * (original[pixel_ith][pixel_jth].rgbtRed);
+                            gx_red   = gx_red   + gx[bi][bj] * (original[pixel_ith][pixel_jth].rgbtRed);
                             gx_green = gx_green + gx[bi][bj] * (original[pixel_ith][pixel_jth].rgbtGreen);
-                            gx_blue = gx_blue + gx[bi][bj] * (original[pixel_ith][pixel_jth].rgbtBlue);
+                            gx_blue  = gx_blue  + gx[bi][bj] * (original[pixel_ith][pixel_jth].rgbtBlue);
+
+                            gy_red   = gy_red   + gy[bi][bj] * (original[pixel_ith][pixel_jth].rgbtRed);
+                            gy_green = gy_green + gy[bi][bj] * (original[pixel_ith][pixel_jth].rgbtGreen);
+                            gy_blue  = gy_blue  + gy[bi][bj] * (original[pixel_ith][pixel_jth].rgbtBlue);
                             pixel_jth++;
                         }
                         pixel_ith++;
                     }
 
-                    int gy[3][3] =
-                        {
-                            {-1, -2, -1},
-                            {0, 0, 0},
-                            {1, 2, 1}};
-                    //incrasing the ith and maintain the vllue of j
-                    int pixel_jth_next = j - 1;
-                    for (int bi = 0; bi < 3; bi++)
-                    {
-
-                        int pixel_idown = i - 1;
-                        for (int bj = 0; bj < 3; bj++)
-                        {
-                            gy_red = gy_red + gy[bi][bj] * (original[pixel_idown][pixel_jth_next].rgbtRed);
-                            gy_green = gy_green + gy[bi][bj] * (original[pixel_idown][pixel_jth_next].rgbtGreen);
-                            gy_blue = gy_blue + gy[bi][bj] * (original[pixel_idown][pixel_jth_next].rgbtBlue);
-                            pixel_idown++;
-                        }
-                        pixel_jth_next++;
-                    }
+   
 
                     float new_red = round((gx_red * gx_red) + (gy_red * gy_red));
                     int round_new_red = round(sqrt(new_red));
@@ -691,4 +694,40 @@ clang -fsanitize=signed-integer-overflow -fsanitize=undefined -ggdb3 -O0 -Qunuse
 
 */
 
+/*
 
+> check50 cs50/problems/2020/x/filter/more
+Connecting.........
+Authenticating.....
+Verifying..........
+Preparing.....
+Uploading..............
+Waiting for results..................................................................
+Results for cs50/problems/2020/x/filter/more generated by check50 v3.1.2
+:) helpers.c exists
+:) filter compiles
+:) grayscale correctly filters single pixel with whole number average
+:) grayscale correctly filters single pixel without whole number average
+:) grayscale leaves alone pixels that are already gray
+:) grayscale correctly filters simple 3x3 image
+:) grayscale correctly filters more complex 3x3 image
+:) grayscale correctly filters 4x4 image
+:) reflect correctly filters 1x2 image
+:) reflect correctly filters 1x3 image
+:) reflect correctly filters image that is its own mirror image
+:) reflect correctly filters 3x3 image
+:) reflect correctly filters 4x4 image
+:) blur correctly filters middle pixel
+:) blur correctly filters pixel on edge
+:) blur correctly filters pixel in corner
+:) blur correctly filters 3x3 image
+:) blur correctly filters 4x4 image
+:) edges correctly filters middle pixel
+:) edges correctly filters pixel on edge
+:) edges correctly filters pixel in corner
+:) edges correctly filters 3x3 image
+:) edges correctly filters 4x4 image
+To see the results in your browser go to https://submit.cs50.io/check50/5e00947b4ceaf9b13c6168959e50879cbe6241ce
+
+
+*/
