@@ -381,3 +381,14 @@ To see the results in your browser go to https://submit.cs50.io/check50/a5eeaf52
 
 */
 //###############################################################################################################################################################
+
+/*
+Usage
+Your program should behave per the examples below.
+
+./filter -g infile.bmp outfile.bmp
+./filter -s infile.bmp outfile.bmp
+./filter -r infile.bmp outfile.bmp
+./filter -b infile.bmp outfile.bmp
+
+*/
