@@ -12,8 +12,10 @@
             "cppStandard": "c++14",
             "intelliSenseMode": "clang-x64",
             "compilerArgs": [
-                "-lcs50"
-            ]
+                "-lcs50",
+                "-lm"
+            ],
+            "compileCommands": ""
         }
     ],
     "version": 4
