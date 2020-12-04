@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "helpers.h"
+#include <cs50.h>
 
 /*
     BYTE  rgbtBlue;
@@ -92,6 +93,8 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             int sepiaRed = round(.393 * originalRed + .769 * originalGreen + .189 * originalBlue);
             int sepiaGreen = round(.349 * originalRed + .686 * originalGreen + .168 * originalBlue);
             int sepiaBlue = round(.272 * originalRed + .534 * originalGreen + .131 * originalBlue);
+
+            //color in deciml shoud not exed 255
             if (sepiaRed > 255)
             {
                 sepiaRed = 255;
@@ -214,6 +217,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
             // filters edge pixel
             //first or last row calaculation
+
             else if (((i == 0 || i == height - 1) && (j > 0 || j == width - 2)) || (i > 0 && (j == 0 || j == width - 1)))
             {
                 //calaculate the avarage of suorded three pixel plus the pixel (avarage of the 6)
@@ -235,35 +239,39 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             // filters middle pixel
             //check if the pixl is sourounded with 9 pixel or not
             // get the original pixel vlaue red blue green and add them to new value befule calcualte the avarage
-            else if ((i > 0 && i < height - 2) && (j > 0))
+            else if ((i > 0 && i < height - 2) && (j > 0 && j < width - 2))
             {
                 int red = 0;
                 int green = 0;
                 int blue = 0;
                 int pixel_ith = i - 1;
                 int pixel_jth = j - 1;
-                for (int bi = 0; bi < 3; bi++, pixel_ith++)
+                for (int bi = 0; bi < 3; bi++)
                 {
-                    for (int bj = 0; bj < 3; bj++, pixel_jth++)
+                    for (int bj = 0; bj < 3; bj++)
                     {
 
                         red = red + original[pixel_ith][pixel_jth].rgbtRed;
                         green = green + original[pixel_ith][pixel_jth].rgbtGreen;
                         blue = blue + original[pixel_ith][pixel_jth].rgbtBlue;
+
+                        pixel_jth++;
                     }
-                    float avarage_red = round(red / 9.0);
-                    int round_avarage_red = round(avarage_red);
-
-                    float avarage_green = round(red / 9.0);
-                    int round_avarage_green = round(avarage_red);
-
-                    float avarage_blue = round(red / 9.0);
-                    int round_avarage_blue = round(avarage_red);
-
-                    image[i][j].rgbtRed = round_avarage_red;
-                    image[i][j].rgbtGreen = round_avarage_green;
-                    image[i][j].rgbtBlue = round_avarage_blue;
+                    pixel_ith++;
                 }
+
+                float avarage_red = round(red / 9.0);
+                int round_avarage_red = round(avarage_red);
+
+                float avarage_green = round(green / 9.0);
+                int round_avarage_green = round(avarage_green);
+
+                float avarage_blue = round(blue / 9.0);
+                int round_avarage_blue = round(avarage_blue);
+
+                image[i][j].rgbtRed = round_avarage_red;
+                image[i][j].rgbtGreen = round_avarage_green;
+                image[i][j].rgbtBlue = round_avarage_blue;
             }
         }
     }
@@ -293,7 +301,9 @@ int pixel_count(int height, int width)
 
 //###############################################################################################################################################################
 /*
+--check command
 ~/pset4/filter/ $ check50 cs50/problems/2020/x/filter/less
+---------------
 Connecting.....
 Authenticating....
 Verifying......
